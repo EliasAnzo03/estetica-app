@@ -1,10 +1,10 @@
 const express = require('express');
 const cors = require('cors');
-const { Pool } = require('pg');
+const pg = require('pg');
 require('dotenv').config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
@@ -139,10 +139,8 @@ app.put('/api/servicios/:id', async (req, res) => {
     } catch (err) { console.error(err); res.status(500).json({ error: "Error al actualizar" }); }
 });
 
-// IMPORTANTE: Le decimos que use el puerto que quiera Render (process.env.PORT)
-// O si no hay ninguno (en tu casa), use el 3000.
-const port = process.env.PORT || 3000;
 
-app.listen(port, () => {
-  console.log(`Servidor corriendo en puerto ${port}`);
+
+app.listen(PORT, () => { // <--- Usá la variable PORT, no el número 3000 fijo
+  console.log(`Servidor corriendo en puerto ${PORT}`);
 });
