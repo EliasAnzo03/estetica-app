@@ -137,7 +137,10 @@ app.put('/api/servicios/:id', async (req, res) => {
     } catch (err) { console.error(err); res.status(500).json({ error: "Error al actualizar" }); }
 });
 
-// Arrancar el servidor
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+// IMPORTANTE: Le decimos que use el puerto que quiera Render (process.env.PORT)
+// O si no hay ninguno (en tu casa), use el 3000.
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log(`Servidor corriendo en puerto ${port}`);
 });
