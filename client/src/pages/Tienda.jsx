@@ -24,8 +24,8 @@ export function Tienda() {
 
   // --- CARGA DE DATOS ---
   const cargarDatos = () => {
-    fetch('http://localhost:3000/api/productos').then(res => res.json()).then(data => setProductos(data));
-    fetch('http://localhost:3000/api/servicios').then(res => res.json()).then(data => setServicios(data));
+    fetch('https://estetica-app.onrender.com').then(res => res.json()).then(data => setProductos(data));
+    fetch('https://estetica-app.onrender.com').then(res => res.json()).then(data => setServicios(data));
   }
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export function Tienda() {
     const fecha = prompt("Fecha y hora (Ej: Mañana 15:00):")
     if (!fecha) return
 
-    const res = await fetch('http://localhost:3000/api/turnos', {
+    const res = await fetch('https://estetica-app.onrender.com/api/turnos', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ cliente: nombreCliente, fecha, servicio: nombreServicio })
@@ -86,7 +86,7 @@ export function Tienda() {
   const eliminarItem = async (id, tipoItem) => {
     if (!confirm(`¿Borrar este ${tipoItem}?`)) return;
     const endpoint = tipoItem === 'producto' ? 'productos' : 'servicios';
-    await fetch(`http://localhost:3000/api/${endpoint}/${id}`, { method: 'DELETE' });
+    await fetch(`https://estetica-app.onrender.com/api/${endpoint}/${id}`, { method: 'DELETE' });
     cargarDatos();
   }
 
@@ -120,8 +120,8 @@ export function Tienda() {
     // 3. Definir a dónde mandarlo (URL)
     const endpoint = tipo === 'producto' ? 'productos' : 'servicios';
     const url = idEditar 
-        ? `http://localhost:3000/api/${endpoint}/${idEditar}` 
-        : `http://localhost:3000/api/${endpoint}`
+        ? `https://estetica-app.onrender.com/api/${endpoint}/${idEditar}` 
+        : `https://estetica-app.onrender.com/api/${endpoint}`
     
     const metodo = idEditar ? 'PUT' : 'POST'
 
