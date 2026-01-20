@@ -13,10 +13,12 @@ app.use(express.json());
 console.log("---- INTENTANDO CONECTAR A LA BASE DE DATOS ----");
 console.log(process.env.DATABASE_URL); 
 
-// Configuración de la Base de Datos
-const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: { rejectUnauthorized: false }
+// CONFIGURACIÓN DE BASE DE DATOS BLINDADA 🛡️
+const pool = new pg.Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false // <--- ESTA ES LA LÍNEA MÁGICA
+  }
 });
 
 // --- RUTA 1: OBTENER TODOS LOS PRODUCTOS (GET) ---
