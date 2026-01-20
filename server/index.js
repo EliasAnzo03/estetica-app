@@ -21,6 +21,11 @@ const pool = new pg.Pool({
   }
 });
 
+// Ruta de bienvenida (para saber que está vivo)
+app.get('/', (req, res) => {
+  res.send('¡Hola! El servidor de Estética está funcionando 🚀');
+});
+
 // --- RUTA 1: OBTENER TODOS LOS PRODUCTOS (GET) ---
 // (Esta es la que probablemente se rompió)
 app.get('/api/productos', async (req, res) => {

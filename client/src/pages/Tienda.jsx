@@ -24,8 +24,8 @@ export function Tienda() {
 
   // --- CARGA DE DATOS ---
   const cargarDatos = () => {
-    fetch('https://estetica-app.onrender.com').then(res => res.json()).then(data => setProductos(data));
-    fetch('https://estetica-app.onrender.com').then(res => res.json()).then(data => setServicios(data));
+    fetch('https://estetica-app.onrender.com/api/productos').then(res => res.json()).then(data => setProductos(data));
+    fetch('https://estetica-app.onrender.com/api/productos').then(res => res.json()).then(data => setServicios(data));
   }
 
   useEffect(() => {
